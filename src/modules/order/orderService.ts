@@ -87,10 +87,24 @@ const getOrdersByCustomer = async (customerId: number) => {
   });
 };
 
+// single order
+const getOrderById = async (id: number) => {
+  const order = await prisma.order.findUnique({
+    where: { id },
+    include: {
+      items: { include: { medicine: true } },
+    },
+  });
+
+  if (!order) throw new Error("Order not found");
+  return order;
+};
+
 
 
 export const orderService = {
   createOrder,
   getOrdersByCustomer,
+  getOrderById,
 
 };

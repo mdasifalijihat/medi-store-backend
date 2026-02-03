@@ -32,10 +32,20 @@ const getMyOrders = async (req: Request, res: Response) => {
   }
 };
 
+const getOrderById = async (req: Request, res: Response) => {
+  try {
+    const order = await orderService.getOrderById(Number(req.params.id));
+    res.json(order);
+  } catch (error: any) {
+    res.status(404).json({ message: error.message });
+  }
+};
+
 
 
 export const orderController = {
   createOrder,
   getMyOrders,
+  getOrderById,
 
 };
