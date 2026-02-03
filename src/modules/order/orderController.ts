@@ -13,9 +13,29 @@ const createOrder = async (req: Request, res: Response) => {
   }
 };
 
+const getMyOrders = async (req: Request, res: Response) => {
+  try {
+    // const customerId = Number(req.query.customerId);
+
+    // if (!customerId || isNaN(customerId)) {
+    //   return res.status(400).json({
+    //     message: "customerId query parameter is required",
+    //   });
+    // }
+    // const customerId = req.user.id;
+    const customerId = 1;
+
+    const orders = await orderService.getOrdersByCustomer(customerId);
+    res.json(orders);
+  } catch (error: any) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
 
 
 export const orderController = {
   createOrder,
-  
+  getMyOrders,
+
 };
