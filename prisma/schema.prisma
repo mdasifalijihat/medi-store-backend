@@ -46,12 +46,21 @@ model Medicine {
 }
 
 model Order {
-  id        Int         @id @default(autoincrement())
-  customer  User        @relation(fields: [userId], references: [id])
-  userId    Int
-  status    String      @default("PLACED")
-  createdAt DateTime    @default(now())
-  items     OrderItem[]
+  id         Int         @id @default(autoincrement())
+  customer   User        @relation(fields: [userId], references: [id])
+  userId     Int
+  status     String      @default("PLACED")
+  address    String
+  totalPrice Float
+  createdAt  DateTime    @default(now())
+  items      OrderItem[]
+}
+
+enum OrderStatus {
+  PLACED
+  PROCESSING
+  SHIPPED
+  DELIVERED
 }
 
 model OrderItem {
