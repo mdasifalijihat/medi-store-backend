@@ -11,6 +11,16 @@ const registerUser = async (req: Request, res: Response) => {
   }
 };
 
+const loginUser = async (req: Request, res: Response) => {
+  try {
+    const token = await authServices.login(req.body);
+    res.json({ message: "Login successful", token });
+  } catch (err: any) {
+    res.status(400).json({ message: err.message });
+  }
+};
+
 export const authController = {
   registerUser,
+  loginUser,
 };
