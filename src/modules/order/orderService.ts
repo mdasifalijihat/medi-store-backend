@@ -100,11 +100,17 @@ const getOrderById = async (id: number) => {
   return order;
 };
 
-
+// admin / seller status update
+const updateOrderStatus = async (id: number, status: string) => {
+  return prisma.order.update({
+    where: { id },
+    data: { status },
+  });
+};
 
 export const orderService = {
   createOrder,
   getOrdersByCustomer,
   getOrderById,
-
+  updateOrderStatus,
 };
