@@ -19,4 +19,4 @@ router.post("/categories", adminController.createCategory);
 router.put("/categories/:id", adminController.updateCategory);
 router.delete("/categories/:id", adminController.deleteCategory);
 
-export default router;
+export const adminRoutes: Router = router;
